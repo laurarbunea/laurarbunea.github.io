@@ -1,0 +1,27 @@
+<div class='[ wrapper ] t-plain' id='header' role="contentinfo" >
+	
+    <div class='[ gutters section ]'>
+        <div class='[ grid ]'>
+        	
+        	<div class='[ width-1/2 ]'>
+	        	<p>
+	        		Barebones
+	        	</p>
+	        </div>
+
+        	<div class='[ width-1/2 ]'>
+				<ul>
+					<% for(var key in styleguide) {%>
+						<li>
+							<a class='' href="#<%= styleguide[key].slug %>">
+								<%= styleguide[key].slug %>
+							</a>
+						</li>
+					<% } %>
+				</ul>
+			</div>
+			
+        </div>
+    </div>
+
+</div>

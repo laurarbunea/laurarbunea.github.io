@@ -1,0 +1,74 @@
+{
+    "globals": {
+        "title": "Title ",
+        "description": "Bare bones of the site",
+        "name": "Fred's Bare bones",
+        "config": {
+            "assets": {
+                "folder_css"    : "static_src/sass",
+                "folder_js"     : "static_src/js",
+                "folder_vendor" : "static_src/vendor",
+                "folder_images" : "static_src/images"
+            }
+        },
+        "styleguide" : {
+            "typography" : {
+                "slug":"typography",
+                "title" : "Typography",
+                "blurb" : "A place to document font-stacks used on your project's site ",
+                "font" : {
+                    "name" : "HelveticaNeue",
+                    "description" : "This is body copy. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu ex velit. Sed placerat nisi et risus faucibus, ac mollis turpis varius. Maecenas nec sapien eu odio porta aliquam id ac risus. "
+                }
+                ,
+                "styles": [ 
+                    "normal", 
+                    "bold", 
+                    "light", 
+                    "italic",
+                    "bold-italic",
+                    "light-italic" 
+                ]     
+            },
+            "grid" : {
+                "slug":"grid",
+                "title" : "Grid breakpoints",
+                "blurb" : "A place to document your grids breakpoints", 
+                "breakpoints" : [
+                    {
+                        "name" : "x-small",
+                        "px" : " &lt; 480px"
+                    },
+                    {
+                        "name" : "small",
+                        "px" : "481px - 767px"
+                    },
+                    {
+                        "name" : "medium",
+                        "px" : "768px - 1000px"
+                    },
+                    {
+                        "name" : "large",
+                        "px" : "1001px - 1280px"
+                    },
+                    {
+                        "name" : "x-large",
+                        "px" : "&gt; 1281px"
+                    }
+                ]
+            }, 
+            "themes":{
+                "slug":"themes",
+                "title":"Themes",
+                "blurb":"A place to document your sites themes. Themes are modifier classes that control the colour scheme of an individual pattern or component.",
+                "classes": [ 
+                    "t-soft", 
+                    "t-dark", 
+                    "t-light",
+                    "t-plain"
+
+                ] 
+            }
+        }
+    }
+}
