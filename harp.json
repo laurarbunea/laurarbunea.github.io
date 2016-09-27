@@ -15,7 +15,7 @@
             "typography" : {
                 "slug":"typography",
                 "title" : "Typography",
-                "blurb" : "A place to document font-stacks used on your project's site. The font family and font weights are variablized in _settings.global.scss",
+                "blurb" : "Below you can find the main font family and weights used on the site. These are variablized in _settings.global.scss.",
                 "font" : {
                     "name" : "HelveticaNeue",
                     "description" : "This is body copy. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu ex velit. Sed placerat nisi et risus faucibus, ac mollis turpis varius. Maecenas nec sapien eu odio porta aliquam id ac risus. "
@@ -32,7 +32,7 @@
             "grid" : {
                 "slug":"grid",
                 "title" : "Grid breakpoints",
-                "blurb" : "A place to document your grids breakpoints. These breakpoints are variablized in _tools.breakpoints.scss", 
+                "blurb" : "Here are the grid breakpoints that are used on the site. These are variablized in _tools.breakpoints.scss.", 
                 "breakpoints" : [
                     {
                         "name" : "x-small",
@@ -59,7 +59,7 @@
             "themes":{
                 "slug":"themes",
                 "title":"Themes",
-                "blurb":"Themes are modifier classes that control the colour scheme of an individual pattern or component. These theme colors are variablized in _theming.scss",
+                "blurb":"Here are the different theme classes that are used on the site. These are variablized in _theming.scss.",
                 "classes": [ 
                     "t-soft", 
                     "t-dark", 

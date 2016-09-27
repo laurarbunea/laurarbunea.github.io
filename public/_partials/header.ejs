@@ -9,16 +9,16 @@
 	        	</p>
 	        </div>
 
-        	<div class='[ width-1/2 ]'>
-				<ul>
+        	<div class='[ width-1/2 ] u-text-right'>
+			
 					<% for(var key in styleguide) {%>
-						<li>
-							<a class='' href="#<%= styleguide[key].slug %>">
-								<%= styleguide[key].slug %>
+						
+							<a class='nav-primary__link' href="#<%= styleguide[key].slug %>">
+								<%= styleguide[key].title %>
 							</a>
-						</li>
+						
 					<% } %>
-				</ul>
+			
 			</div>
 			
         </div>
