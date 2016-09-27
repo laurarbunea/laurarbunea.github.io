@@ -1,8 +1,8 @@
 {
     "globals": {
-        "title": "Title",
-        "description": "Bare bones of the site",
-        "name": "Fred's Bare bones",
+        "title": "Style guide",
+        "description": "A place to document a sites typography, breakpoints and base themes.",
+        "name": "Style guide",
         "config": {
             "assets": {
                 "folder_css"    : "static_src/sass",
