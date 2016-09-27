@@ -5,19 +5,19 @@
         	
         	<div class='[ width-1/2 ]'>
 	        	<p>
-	        		Barebones
+	        		 <!--<img src='<%= config.assets.folder_images %>/logo.jpg' alt='' class=''/>--> Style guide
 	        	</p>
 	        </div>
 
         	<div class='[ width-1/2 ] u-text-right'>
 			
-					<% for(var key in styleguide) {%>
-						
-							<a class='nav-primary__link' href="#<%= styleguide[key].slug %>">
-								<%= styleguide[key].title %>
-							</a>
-						
-					<% } %>
+				<% for(var key in styleguide) {%>
+					
+					<a class='nav-primary__link' href="#<%= styleguide[key].slug %>">
+						<%= styleguide[key].title %>
+					</a>
+				
+				<% } %>
 			
 			</div>
 			
