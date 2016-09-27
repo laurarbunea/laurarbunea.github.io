@@ -68,63 +68,63 @@ $themes: (
 // ----------------------------------------------------------------------------
 // Grid breakpoints
 // ----------------------------------------------------------------------------
-// $im-on-this:#FFCCCC;
-// $im-on-this-text:#666A86;
+$im-on-this:#FFCCCC;
+$im-on-this-text:#666A86;
 
-// .im-on-x-large {
-//     @include xlarge {
-//         .swatch__top {
-//             background-color:$im-on-this;
-//             color:$im-on-this-text;
-//         }
-//     } 
-// }
+ .im-on-x-large {
+     @include xlarge {
+         .swatch__top {
+             background-color:$im-on-this;
+             color:$im-on-this-text;
+         }
+     } 
+ }
 
-// .im-on-large {
-//     @include large {
-//         .swatch__top {
-//             background-color:$im-on-this;
-//             color:$im-on-this-text;
-//         }
-//     } 
-// }
+ .im-on-large {
+     @include large {
+         .swatch__top {
+             background-color:$im-on-this;
+             color:$im-on-this-text;
+         }
+     } 
+}
 
-// .im-on-medium {
-//     @include medium {
-//         .swatch__top {
-//             background-color:$im-on-this;
-//             color:$im-on-this-text;
-//         }
-//     } 
-// }
+.im-on-medium {
+    @include medium {
+        .swatch__top {
+            background-color:$im-on-this;
+            color:$im-on-this-text;
+         }
+     } 
+}
 
-// .im-on-smallish {
-//     @include smallish {
-//         .swatch__top {
-//             background-color:$im-on-this;
-//             color:$im-on-this-text;
-//         }
-//     } 
-// }
+ .im-on-smallish {
+     @include smallish {
+         .swatch__top {
+             background-color:$im-on-this;
+             color:$im-on-this-text;
+         }
+     } 
+ }
 
 
-// .im-on-small {
-//     @include small {
-//         .swatch__top {
-//             background-color:$im-on-this;
-//             color:$im-on-this-text;
-//         }
-//     } 
-// }
+.im-on-small {
+    @include small {
+        .swatch__top {
+             background-color:$im-on-this;
+             color:$im-on-this-text;
+        }
+    } 
+}
 
-// .im-on-x-small {
-//     @include xsmall {
-//         .swatch__top {
-//             background-color:$im-on-this;
-//             color:$im-on-this-text;
-//         }
-//     } 
-// }
+ .im-on-x-small {
+     @include xsmall {
+         .swatch__top {
+             background-color:$im-on-this;
+             color:$im-on-this-text;
+         }
+     } 
+}
 
 
 .u-bold,
