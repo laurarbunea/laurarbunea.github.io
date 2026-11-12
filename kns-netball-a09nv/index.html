@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>KNS Year 2 Netball</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a single column of game cards, like a team sheet pinned to the clubroom wall. Tap a name to follow one girl. */
+:root {
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --ink: #1b2340;
+  --muted: #646c88;
+  --line: #e2e5ef;
+  --brand: #3446c9;
+  --brand-ink: #ffffff;
+  --attack: #e8553f;  --attack-soft: #fde6e1;
+  --centre: #e0a100;  --centre-soft: #fdf1cf;
+  --defence: #1f9a8a; --defence-soft: #d8f2ee;
+  --sit: #8a90a8;     --sit-soft: #eceef4;
+  --hi: #3446c9;      --hi-soft: #e3e7ff;
+  --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+:root, :root[data-theme="dark"] { color-scheme: light; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.45; }
+.wrap { max-width: 720px; margin: 0 auto; padding-block: 28px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 22px; }
+header h1 { font-family: var(--display); font-weight: 800; font-size: clamp(32px, 8vw, 48px); line-height: 1; margin: 0; letter-spacing: -0.02em; text-wrap: balance; }
+header p { margin: 8px 0 0; color: var(--muted); font-weight: 500; }
+header .motto { margin-top: 14px; display: inline-block; font-family: var(--display); font-weight: 600; font-size: clamp(18px, 4.5vw, 22px); color: var(--ink); background: var(--centre-soft); padding: 6px 14px; border-radius: 12px; text-wrap: balance; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 999px; letter-spacing: 0.02em; }
+.tag i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.t-attack { background: var(--attack-soft); color: var(--ink); } .t-attack i { background: var(--attack); }
+.t-centre { background: var(--centre-soft); color: var(--ink); } .t-centre i { background: var(--centre); }
+.t-defence { background: var(--defence-soft); color: var(--ink); } .t-defence i { background: var(--defence); }
+.t-sit { background: var(--sit-soft); color: var(--ink); } .t-sit i { background: var(--sit); }
+
+.picker { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.picker h2 { font-family: var(--display); font-size: 18px; margin: 0; font-weight: 600; }
+.names { display: flex; flex-wrap: wrap; gap: 8px; }
+.names button { font: inherit; font-weight: 600; font-size: 15px; padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; }
+.names button:hover { border-color: var(--brand); }
+.names button[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); }
+.names button:focus-visible, .pod button:focus-visible { outline: 3px solid var(--hi); outline-offset: 2px; }
+
+.list { display: flex; flex-direction: column; gap: 14px; }
+.game { background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.game.next { border: 2px solid var(--brand); }
+.game.next .ghead { padding: 18px 20px; gap: 16px; }
+.game.next .gmeta h3 { font-size: 24px; margin-top: 4px; }
+.game.next .gmeta .where { margin-top: 2px; }
+.game.next .half { padding: 16px 20px 20px; gap: 10px; }
+.game.next .row { padding: 10px; }
+.game.next .mine { padding: 12px 20px; }
+.game.past { opacity: 0.75; }
+.ghead { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+.date { flex: none; width: 56px; text-align: center; border-radius: 12px; background: var(--hi-soft); padding: 6px 0; }
+.date b { display: block; font-family: var(--display); font-size: 24px; line-height: 1; font-weight: 800; }
+.date span { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.gmeta { min-width: 0; flex: 1; }
+.gmeta .num { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.badge { background: var(--brand); color: var(--brand-ink); padding: 2px 8px; border-radius: 999px; letter-spacing: 0.04em; }
+.gmeta h3 { margin: 2px 0 0; font-family: var(--display); font-size: 21px; font-weight: 600; line-height: 1.15; }
+.gmeta .where { font-size: 14px; color: var(--muted); }
+.mine { padding: 10px 16px; background: var(--hi-soft); font-weight: 600; font-size: 15px; }
+.halves { display: grid; grid-template-columns: 1fr 1fr; }
+.half { padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.half + .half { border-left: 1px solid var(--line); }
+.half h4 { margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.row { display: grid; grid-template-columns: 76px 1fr; gap: 8px; align-items: center; border-radius: 10px; padding: 8px; }
+.row .lbl { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; }
+.row .who { display: flex; flex-wrap: wrap; gap: 6px; }
+.who .n { background: var(--card); color: var(--ink); font-weight: 700; font-size: 17px; padding: 3px 10px; border-radius: 8px; }
+.r-attack { background: var(--attack-soft); } .r-attack .lbl { color: var(--attack); }
+.r-centre { background: var(--centre-soft); } .r-centre .lbl { color: var(--centre); }
+.r-defence { background: var(--defence-soft); } .r-defence .lbl { color: var(--defence); }
+.r-sit { background: var(--sit-soft); } .r-sit .lbl { color: var(--sit); }
+.focus .who .n { opacity: 0.4; }
+.focus .who .n.me { opacity: 1; background: var(--hi); color: var(--brand-ink); }
+.note { border: 1.5px dashed var(--line); border-radius: 14px; padding: 12px 16px; display: flex; gap: 12px; align-items: center; color: var(--muted); font-weight: 600; }
+.note .date { background: var(--sit-soft); width: 48px; }
+.note .date b { font-size: 20px; }
+.played { padding: 14px 16px; color: var(--muted); font-weight: 600; }
+
+.played-wrap { display: flex; flex-direction: column; gap: 12px; }
+h2.sec { font-family: var(--display); font-size: 22px; font-weight: 600; margin: 8px 0 0; }
+section.extra { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+section.extra h2 { font-family: var(--display); font-size: 20px; margin: 0; font-weight: 600; }
+section.extra p { margin: 0; color: var(--muted); }
+.pod { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+.pod div { border: 1px solid var(--line); border-radius: 12px; padding: 8px 12px; font-variant-numeric: tabular-nums; }
+.pod div small { display: block; color: var(--muted); font-size: 12px; font-weight: 600; }
+.pod div b { font-weight: 700; }
+.pod div.empty b { color: var(--muted); font-weight: 500; }
+.waiting { background: var(--centre-soft); border-radius: 12px; padding: 10px 14px; font-weight: 600; }
+.waiting small { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 2px; }
+.rules { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+
+@media (max-width: 520px) {
+  .halves { grid-template-columns: 1fr; }
+  .half + .half { border-left: 0; border-top: 1px solid var(--line); }
+}
+@media (prefers-reduced-motion: no-preference) { .names button, .game { transition: all .15s ease; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>KNS Year 2 Netball</h1>
+    <p>Fridays at 4pm, Karori Normal School</p>
+  </header>
+
+  <div class="picker">
+    <h2>Tap your daughter's name</h2>
+    <div class="names" id="names"></div>
+  </div>
+
+  <div class="list" id="list"></div>
+
+  <div class="played-wrap" id="played-wrap">
+    <h2 class="sec">Played games</h2>
+    <div class="list" id="played"></div>
+  </div>
+
+  <section class="extra">
+    <h2>Player of the day</h2>
+    <p>Every girl gets it once before anyone gets it twice.</p>
+    <div class="waiting" id="waiting"></div>
+    <div class="pod" id="pod"></div>
+  </section>
+
+  <section class="extra">
+    <h2>How it works</h2>
+    <ul class="rules">
+      <li>Everyone plays the same amount.</li>
+      <li>Everyone plays attack, centre and defence.</li>
+      <li>If someone is away, the first girl sitting out plays instead.</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+const GIRLS = ["Ailish","Ava","Clara","Ella","Matina","Ria","Sienna","Sophie"];
+// Roster from the team's shared sheet (its Games 1-8 = our Games 2-9; Game 10 is new),
+// with 6 position swaps so no girl plays the same area in both halves of a game.
+const h = (attack, centre, defence, sit) => ({ attack, centre, defence, sit });
+const R = {
+  2: [h(["Sophie","Matina"],["Ailish","Ava"],["Clara","Ella"],["Ria","Sienna"]),
+      h(["Ella","Ailish"],["Clara","Matina"],["Ria","Sienna"],["Sophie","Ava"])],
+  3: [h(["Sienna","Sophie"],["Ava","Ailish"],["Ria","Matina"],["Clara","Ella"]),
+      h(["Ria","Ava"],["Sienna","Clara"],["Ella","Sophie"],["Ailish","Matina"])],
+  4: [h(["Ria","Sienna"],["Clara","Ella"],["Ailish","Matina"],["Sophie","Ava"]),
+      h(["Clara","Ailish"],["Sophie","Matina"],["Ella","Ava"],["Ria","Sienna"])],
+  5: [h(["Ria","Ava"],["Clara","Ella"],["Sienna","Sophie"],["Ailish","Matina"]),
+      h(["Sophie","Matina"],["Ria","Sienna"],["Ava","Ailish"],["Clara","Ella"])],
+  6: [h(["Clara","Ailish"],["Ella","Ava"],["Sophie","Matina"],["Ria","Sienna"]),
+      h(["Ella","Matina"],["Ria","Sienna"],["Clara","Ailish"],["Sophie","Ava"])],
+  7: [h(["Ava","Matina"],["Ria","Ailish"],["Sienna","Sophie"],["Clara","Ella"]),
+      h(["Sienna","Clara"],["Ella","Sophie"],["Ria","Ava"],["Ailish","Matina"])],
+  8: [h(["Ria","Clara"],["Sienna","Ailish"],["Ella","Matina"],["Sophie","Ava"]),
+      h(["Ella","Ava"],["Matina","Sophie"],["Ailish","Clara"],["Ria","Sienna"])],
+  9: [h(["Ella","Sophie"],["Ava","Ria"],["Sienna","Clara"],["Ailish","Matina"]),
+      h(["Ailish","Matina"],["Sienna","Sophie"],["Ria","Ava"],["Clara","Ella"])],
+  10: [h(["Ailish","Sophie"],["Matina","Ava"],["Clara","Ella"],["Ria","Sienna"]),
+      h(["Clara","Sienna"],["Ailish","Ella"],["Ria","Matina"],["Sophie","Ava"])]
+};
+const SCHEDULE = [
+  { type:"played", n:1, vs:"Hectics" },
+  { type:"game", n:2,  date:"2026-11-13", vs:"Ngaio Shooters",  court:2, plan:R[2] },
+  { type:"game", n:3,  date:"2026-11-20", vs:"Rainbow Rockets", court:2, plan:R[3] },
+  { type:"note", date:"2026-11-27", text:"Training on Court 1. No game." },
+  { type:"game", n:4,  date:"2026-12-04", vs:"Marsden Magics",  court:2, plan:R[4] },
+  { type:"game", n:5,  date:"2026-12-11", vs:"Hectics",         court:3, plan:R[5] },
+  { type:"note", date:"2026-12-18", text:"Summer break. No games until 29 January." },
+  { type:"game", n:6,  date:"2027-01-29", vs:"Ngaio Shooters",  court:3, plan:R[6] },
+  { type:"game", n:7,  date:"2027-02-05", vs:"Rainbow Rockets", court:1, plan:R[7] },
+  { type:"note", date:"2027-02-12", text:"Training on Court 1. No game." },
+  { type:"game", n:8,  date:"2027-02-19", vs:"Marsden Magics",  court:2, plan:R[8] },
+  { type:"game", n:9,  date:"2027-02-26", vs:"Hectics",         court:3, plan:R[9] },
+  { type:"game", n:10, date:"2027-03-05", vs:"Ngaio Shooters",  court:2, plan:R[10] }
+];
+const POD = { 1:"Sophie" };
+const AREAS = [["attack","Attack"],["centre","Centre"],["defence","Defence"],["sit","Sitting out"]];
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+let me = null;
+try { me = localStorage.getItem("kns-girl"); if (!GIRLS.includes(me)) me = null; } catch (e) {}
+
+const today = new Date(); today.setHours(0,0,0,0);
+const parse = s => { const [y,m,d] = s.split("-").map(Number); return new Date(y, m-1, d); };
+const nextGame = SCHEDULE.find(g => g.type === "game" && parse(g.date) >= today);
+
+function dateBox(s) {
+  const d = parse(s);
+  return `<div class="date"><b>${d.getDate()}</b><span>${MONTHS[d.getMonth()]}</span></div>`;
+}
+function names(list) {
+  return list.map(n => `<span class="n${n === me ? " me" : ""}">${n}</span>`).join("");
+}
+function mySummary(plan) {
+  const parts = plan.map((h, i) => {
+    const area = AREAS.find(([k]) => h[k].includes(me));
+    return `${i === 0 ? "1st half" : "2nd half"}: ${area[1].toLowerCase()}`;
+  });
+  return `${me}: ${parts.join(" · ")}`;
+}
+
+function render() {
+  document.getElementById("names").innerHTML = GIRLS.map(n =>
+    `<button type="button" id="girl-${n}" aria-pressed="${n === me}" data-n="${n}">${n}</button>`).join("");
+
+  const isPast = g => g.type === "played" || parse(g.date) < today;
+  const upcoming = SCHEDULE.filter(g => !isPast(g));
+  const played = SCHEDULE.filter(g => isPast(g) && g.type !== "note").reverse();
+  document.getElementById("played-wrap").hidden = played.length === 0;
+  document.getElementById("list").innerHTML = upcoming.map(card).join("");
+  document.getElementById("played").innerHTML = played.map(card).join("");
+
+  function card(g) {
+    if (g.type === "note") return `<div class="note">${dateBox(g.date)}<div>${g.text}</div></div>`;
+    if (g.type === "played") return `<div class="game past"><div class="played">Game ${g.n} v ${g.vs}: played</div></div>`;
+    const past = parse(g.date) < today;
+    const isNext = g === nextGame;
+    const halves = g.plan.map((h, i) => `
+      <div class="half"><h4>${i === 0 ? "1st half" : "2nd half"}</h4>
+        ${AREAS.map(([k, label]) => `<div class="row r-${k}"><span class="lbl">${label === "Sitting out" ? "Sitting out" : label}</span><span class="who">${names(h[k])}</span></div>`).join("")}
+      </div>`).join("");
+    return `<article class="game${isNext ? " next" : ""}${past ? " past" : ""}${me ? " focus" : ""}">
+      <div class="ghead">${dateBox(g.date)}
+        <div class="gmeta"><div class="num">Game ${g.n}${isNext ? '<span class="badge">Next game</span>' : ""}</div>
+          <h3>v ${g.vs}</h3><div class="where">Court ${g.court}, 4pm</div></div>
+      </div>
+      ${me ? `<div class="mine">${mySummary(g.plan)}</div>` : ""}
+      <div class="halves">${halves}</div>
+    </article>`;
+  }
+
+  const counts = Object.fromEntries(GIRLS.map(n => [n, 0]));
+  Object.values(POD).forEach(n => { if (n in counts) counts[n]++; });
+  const low = Math.min(...Object.values(counts));
+  const due = GIRLS.filter(n => counts[n] === low);
+  document.getElementById("waiting").innerHTML = `<small>Still waiting for their turn</small>${due.join(", ")}`;
+
+  const games = SCHEDULE.filter(g => g.type !== "note");
+  document.getElementById("pod").innerHTML = games.map(g => {
+    const who = POD[g.n];
+    const when = g.date ? `${parse(g.date).getDate()} ${MONTHS[parse(g.date).getMonth()]}` : "Played";
+    return `<div class="${who ? "" : "empty"}"><small>Game ${g.n} · ${when}</small><b>${who || "To come"}</b></div>`;
+  }).join("");
+}
+
+document.getElementById("names").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  me = me === b.dataset.n ? null : b.dataset.n;
+  try { me ? localStorage.setItem("kns-girl", me) : localStorage.removeItem("kns-girl"); } catch (e) {}
+  render();
+});
+render();
+</script>
+</body>
+</html>
